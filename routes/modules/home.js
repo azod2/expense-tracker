@@ -8,4 +8,14 @@ router.get('/', (req,res) => {
     res.render('index')
 })
 
+router.get('/new', ((req, res) => {
+    console.log('new router')
+    res.render('new')
+}))
+
+router.get('/edit', (req, res) => {
+    console.log('edit get router')
+    res.render('edit')
+})
+
 module.exports = router
