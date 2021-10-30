@@ -1,21 +1,18 @@
 const express = require('express')
 const router = express.Router()
 
+const Record = require('../../models/record')
+const Category = require('../../models/category')
 
 
+//index
 router.get('/', (req,res) => {
-    // console.log('home router')
-    res.render('index')
+    Record.find()
+        .lean()
+        .then( record => res.render('index', {record}))
+        .catch((error) => console.log(error))
 })
 
-router.get('/new', ((req, res) => {
-    console.log('new router')
-    res.render('new')
-}))
 
-router.get('/edit', (req, res) => {
-    console.log('edit get router')
-    res.render('edit')
-})
 
 module.exports = router

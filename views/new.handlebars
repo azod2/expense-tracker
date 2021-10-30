@@ -1,58 +1,63 @@
 <div class="container">
     <div class="d-flex">
-        <table>
-            <tr>
-                <td>
-                    *必填欄位
-                </td>
-                <td>
-                    請輸入你的支出
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    名稱* :
-                </td>
-                <td>
-                    <input type="text">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    日期* :
-                </td>
-                <td>
-                    <input type="date">
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    類別* :
-                </td>
-                <td>
-                    <select name="category" id="category"></select>
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    金額* :
-                </td>
-                <td>
-                    <input type="number">
-                </td>
-            </tr>
-            <tr>
-                <td>
+        <form action="/record/new" method="POST">
+            <table>
+                <tr>
+                    <td>
+                        *必填欄位
+                    </td>
+                    <td>
+                        請輸入你的支出
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        名稱* :
+                    </td>
+                    <td>
+                        <input type="text" name="name">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        日期* :
+                    </td>
+                    <td>
+                        <input type="date" name="date">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        類別* :
+                    </td>
+                    <td>
+                        <select name="categoryId" id="category">
+                            {{#each category}}
+                                <option value="{{this.id}}">{{this.name}}</option>
+                            {{/each}}
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        金額* :
+                    </td>
+                    <td>
+                        <input type="number" name="amount">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
 
-                </td>
-                <td>
-                    <form action="/new">
-                        <button type="submit" class="btn btn-outline-secondary">新增支出</button>
-                    </form>
-                </td>
-            </tr>
-        </table>
+                    </td>
+                    <td>
 
+                            <button type="submit" class="btn btn-outline-secondary">新增支出</button>
+
+                    </td>
+                </tr>
+            </table>
+        </form>
     </div>
     
 </div>

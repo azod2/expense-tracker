@@ -9,7 +9,7 @@ const recordSchema = new Schema({
         type: String
     },
     date: {
-        type: Date
+        type: String
     },
     amount: {
         type: Number,
@@ -17,11 +17,11 @@ const recordSchema = new Schema({
     },
     userId: {
         type: Number,
-        required: true
+        required: false
     },
     categoryId: {
         type: Number,
-        required: true
+        required: false
     }
 })
 
