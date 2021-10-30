@@ -31,13 +31,24 @@ router.get('/:id/edit', (req, res) => {
 //新增
 router.post('/new', (req, res) => {
 console.log('record new router')
-return  Record.create({...req.body})
-    .then(() => res.redirect('/'))
+   return Category.find({ id:req.body.categoryId })
+    .lean()
+    .then(categoryId => {
+        let icon = categoryId[0].icon
+        return Record.create({ ...req.body, icon })
+    })
+    .then( () => res.redirect('/') )
     .catch((error) => console.log(error))
 })
 
+//刪除
 router.delete('/:id', (req, res) => {
-    console.log('id:',req.params.id)
+    const id = req.params.id
+
+    Record.findById(id)
+        .then( record => record.remove())
+        .then( () => res.redirect('/'))
+        .catch(error => console.log(error))
 })
 
 module.exports = router

@@ -22,6 +22,11 @@ const recordSchema = new Schema({
     categoryId: {
         type: Number,
         required: false
+    },
+    icon: {
+        type: String,
+        default: '_',
+        required: true
     }
 })
 
