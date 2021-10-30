@@ -1,6 +1,6 @@
 <div class="container">
     <div class="d-flex">
-        <form action="/edit">
+        <form action="/record/{{record._id}}/edit?_method=PUT" method="POST" style="display: inline;">
             <table>
                 <tr>
                     <td>
@@ -15,7 +15,7 @@
                         名稱* :
                     </td>
                     <td>
-                        <input type="text" value="{{record.name}}">
+                        <input type="text" name="name" value="{{record.name}}">
 <!--                        <input type="text" value="1111">-->
                     </td>
                 </tr>
@@ -24,7 +24,7 @@
                         日期* :
                     </td>
                     <td>
-                        <input type="date" value="{{record.date}}">
+                        <input type="date" name="date" value="{{record.date}}">
                     </td>
                 </tr>
                 <tr>
@@ -32,7 +32,7 @@
                         類別* :
                     </td>
                     <td>
-                        <select name="category" id="category">
+                        <select name="categoryId" id="categoryId">
                             {{#each category}}
                                 <option value="{{this.id}}">{{this.name}}</option>
                             {{/each}}
@@ -44,7 +44,7 @@
                         金額* :
                     </td>
                     <td>
-                        <input type="number" value="{{record.amount}}">
+                        <input type="number" name="amount" value="{{record.amount}}">
                     </td>
                 </tr>
                 <tr>

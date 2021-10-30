@@ -15,15 +15,37 @@ router.get('/new', ((req, res) => {
 
 }))
 
+//修改頁面
 router.get('/:id/edit', (req, res) => {
     console.log('edit get router')
     const id = req.params.id
 
-
     return Record.findById(id)
         .lean()
-        .then( (record) => res.render('edit', {record }))
-        // .then( (record) => console.log(record))
+        .then( (record) => {
+            Category.find()
+                .lean()
+                .then( category => res.render('edit', { record, category }))
+        })
+        .catch((error) => console.log(error))
+})
+
+//修改內容
+router.put('/:id/edit', (req, res) => {
+    const _id = req.params.id
+    console.log('put edit router')
+    return Record.findOne({ _id })
+        .then( (record) => {
+            Object.assign( record, req.body )
+
+            Category.find({ id : req.body.categoryId })
+                .then( categoryid => {
+                    let icon = categoryid[0].icon
+                    record.icon = icon
+                    return record.save()
+                } )
+        })
+        .then( () => res.redirect('/') )
         .catch((error) => console.log(error))
 })
 
