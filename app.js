@@ -8,6 +8,7 @@ const app = express()
 const routes = require('./routes')
 const methodOverride = require('method-override')
 const port = process.env.PORT
+const session = require('express-session')
 
 //資料庫連線
 require('./config/mongoose')
@@ -15,6 +16,12 @@ require('./config/mongoose')
 //使用layout既定格式
 app.engine('handlebars', exphbs({defaultLayout: 'main'}))
 app.set('view engine', 'handlebars')
+
+app.use(session({
+    secret: 'ThisIsMySecret',
+    resave: false,
+    saveUninitialized: true
+}))
 
 // CSS
 app.use(express.static('public'))
