@@ -18,9 +18,9 @@ router.get('/new', ((req, res) => {
 //修改頁面
 router.get('/:id/edit', (req, res) => {
     console.log('edit get router')
-    const id = req.params.id
-
-    return Record.findById(id)
+    const _id = req.params.id
+    const userId = req.user._id
+    return Record.findOne({ _id, userId})
         .lean()
         .then( (record) => {
             Category.find()
@@ -33,8 +33,9 @@ router.get('/:id/edit', (req, res) => {
 //修改內容
 router.put('/:id/edit', (req, res) => {
     const _id = req.params.id
+    const userId = req.user._id
     console.log('put edit router')
-    return Record.findOne({ _id })
+    return Record.findOne({ _id, userId })
         .then( (record) => {
             Object.assign( record, req.body )
 
@@ -51,12 +52,13 @@ router.put('/:id/edit', (req, res) => {
 
 //新增
 router.post('/new', (req, res) => {
-console.log('record new router')
+    console.log('record new router')
+    const userId = req.user._id
    return Category.find({ id:req.body.categoryId })
     .lean()
     .then(categoryId => {
         let icon = categoryId[0].icon
-        return Record.create({ ...req.body, icon })
+        return Record.create({ ...req.body, icon, userId })
     })
     .then( () => res.redirect('/') )
     .catch((error) => console.log(error))
@@ -64,9 +66,9 @@ console.log('record new router')
 
 //刪除
 router.delete('/:id', (req, res) => {
-    const id = req.params.id
-
-    Record.findById(id)
+    const _id = req.params.id
+    const userId = req.user._id
+    Record.findById({ _id, userId })
         .then( record => record.remove())
         .then( () => res.redirect('/'))
         .catch(error => console.log(error))
