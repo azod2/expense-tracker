@@ -1,0 +1,39 @@
+{
+  "recods": [
+    {
+      "name": "午餐",
+      "date": "2021/10/31",
+      "amount": "100",
+      "categoryId": "4",
+      "icon": "fas fa-utensils"
+    },
+    {
+      "name": "晚餐",
+      "date": "2021/10/31",
+      "amount": "230",
+      "categoryId": "4",
+      "icon": "fas fa-utensils"
+    },
+    {
+      "name": "搭公車",
+      "date": "2021/10/31",
+      "amount": "10",
+      "categoryId": "2",
+      "icon": "fas fa-shuttle-van"
+    },
+    {
+      "name": "看電影",
+      "date": "2021/10/31",
+      "amount": "980",
+      "categoryId": "3",
+      "icon": "fas fa-grin-beam"
+    },
+    {
+      "name": "買衣服",
+      "date": "2021/10/31",
+      "amount": "5200",
+      "categoryId": "5",
+      "icon": "fas fa-pen"
+    }
+  ]
+}

@@ -3,7 +3,7 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 const db = require('../../config/mongoose')
-const category = require('../category.js')
+const Category = require('../category.js')
 const categoryList = require('../../seed_data/category.json')
 
 db.on('error', () => {
@@ -11,10 +11,15 @@ db.on('error', () => {
 })
 
 db.once('open', () => {
-    return Promise.all(
-        categoryList.category.map((categorys, index) => {
-            if (categorys.name != null){
-                return category.create({...categorys})
+    Promise.all(
+        categoryList.category.map((category, index) => {
+            if (category.name != null){
+                return Category.create({...category})
             }
     }))
+        .then(() => {
+            console.log('done')
+            process.exit()
+        })
+        .catch((err) => console.log(err))
 })

@@ -7,7 +7,7 @@ const Category = require("../../models/category");
 
 
 router.get('/new', ((req, res) => {
-    console.log('home new router')
+    // console.log('home new router')
     Category.find()
         .lean()
         .then( category => res.render('new',{ category }))
@@ -17,7 +17,7 @@ router.get('/new', ((req, res) => {
 
 //修改頁面
 router.get('/:id/edit', (req, res) => {
-    console.log('edit get router')
+    // console.log('edit get router')
     const _id = req.params.id
     const userId = req.user._id
     return Record.findOne({ _id, userId})
@@ -34,7 +34,7 @@ router.get('/:id/edit', (req, res) => {
 router.put('/:id/edit', (req, res) => {
     const _id = req.params.id
     const userId = req.user._id
-    console.log('put edit router')
+    // console.log('put edit router')
     return Record.findOne({ _id, userId })
         .then( (record) => {
             Object.assign( record, req.body )
@@ -52,7 +52,7 @@ router.put('/:id/edit', (req, res) => {
 
 //新增
 router.post('/new', (req, res) => {
-    console.log('record new router')
+    // console.log('record new router')
     const userId = req.user._id
    return Category.find({ id:req.body.categoryId })
     .lean()
@@ -76,7 +76,7 @@ router.delete('/:id', (req, res) => {
 
 //類別分類顯示
 router.post('/search',(req, res) => {
-    console.log('body: ',req.body.categoryId)
+    // console.log('body: ',req.body.categoryId)
     const userId = req.user._id
     if ( req.body.categoryId.length < 1 ) { return res.redirect('/')}
 

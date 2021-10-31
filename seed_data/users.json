@@ -1,0 +1,16 @@
+{
+  "seed_users": [
+    {
+    "name": "老爸",
+    "email": "user1@example.com",
+    "password": "12345678",
+    "item": [0, 1, 4]
+    },
+    {
+    "name": "老媽",
+    "email": "user2@example.com",
+    "password": "12345678",
+    "item": [0, 2, 3]
+    }
+  ]
+}

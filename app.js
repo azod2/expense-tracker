@@ -7,7 +7,7 @@ const exphbs = require('express-handlebars')
 const app = express()
 const routes = require('./routes')
 const methodOverride = require('method-override')
-const port = process.env.PORT
+const port = process.env.PORT || 3000
 const session = require('express-session')
 const usePassport = require('./config/passport')
 const flash = require('connect-flash')
@@ -26,6 +26,7 @@ app.use(session({
 }))
 
 usePassport(app)
+
 app.use(flash())
 
 app.use((req, res, next) => {
@@ -42,6 +43,8 @@ app.use(express.static('public'))
 app.use(methodOverride('_method'))
 
 app.use(express.urlencoded({extended: true}))
+
+
 
 app.use(routes)
 
