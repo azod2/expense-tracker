@@ -77,10 +77,10 @@ router.delete('/:id', (req, res) => {
 //類別分類顯示
 router.post('/search',(req, res) => {
     console.log('body: ',req.body.categoryId)
-
+    const userId = req.user._id
     if ( req.body.categoryId.length < 1 ) { return res.redirect('/')}
 
-    Record.find({ categoryId: req.body.categoryId })
+    Record.find({ categoryId: req.body.categoryId, userId })
         .lean()
         .then( record => {
             let totalAmount = 0

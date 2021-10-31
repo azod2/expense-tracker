@@ -13,9 +13,9 @@
             <a class="navbar-brand font-weight-bold" style="font-size: x-large;" href="/">
                 {{#if isAuthenticated}}{{ user.name}}的{{/if}}記帳本</a>
             {{#if isAuthenticated}}
-                <a href="/users/logout" class="btn btn-outline-light">登出</a>
+                <a href="/users/logout" class="btn btn-outline-dark">登出</a>
             {{else}}
-                <a href="/users/login" class="btn btn-outline-light">登入</a>
+                <a href="/users/login" class="btn btn-outline-dark">登入</a>
             {{/if}}
         </div>
     </nav>
