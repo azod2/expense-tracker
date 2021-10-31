@@ -10,8 +10,13 @@
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
     <nav class="navbar navbar-light bg-light">
         <div class="container-fluid">
-            <a class="navbar-brand font-weight-bold" style="font-size: x-large;" href="/">家庭記帳本</a>
-            <button type="button" class="btn btn-outline-secondary" style="-webkit-text-fill-color: orangered">登出</button>
+            <a class="navbar-brand font-weight-bold" style="font-size: x-large;" href="/">
+                {{#if isAuthenticated}}{{ user.name}}的{{/if}}記帳本</a>
+            {{#if isAuthenticated}}
+                <a href="/users/logout" class="btn btn-outline-light">登出</a>
+            {{else}}
+                <a href="/users/login" class="btn btn-outline-light">登入</a>
+            {{/if}}
         </div>
     </nav>
 
