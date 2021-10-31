@@ -40,8 +40,7 @@ router.put('/:id/edit', (req, res) => {
 
             Category.find({ id : req.body.categoryId })
                 .then( categoryid => {
-                    let icon = categoryid[0].icon
-                    record.icon = icon
+                    record.icon = categoryid[0].icon
                     return record.save()
                 } )
         })
@@ -71,6 +70,27 @@ router.delete('/:id', (req, res) => {
         .then( record => record.remove())
         .then( () => res.redirect('/'))
         .catch(error => console.log(error))
+})
+
+//類別分類顯示
+router.post('/search',(req, res) => {
+    console.log('body: ',req.body.categoryId)
+
+    if ( req.body.categoryId.length < 1 ) { return res.redirect('/')}
+
+    Record.find({ categoryId: req.body.categoryId })
+        .lean()
+        .then( record => {
+            let totalAmount = 0
+
+            record.forEach( (records) => {
+                totalAmount += records.amount
+            })
+            Category.find()
+                .lean()
+                .then( category => res.render('index', { record, category ,totalAmount}))
+                .catch((error) => console.log(error))
+        })
 })
 
 module.exports = router
