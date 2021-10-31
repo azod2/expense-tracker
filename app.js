@@ -9,6 +9,7 @@ const routes = require('./routes')
 const methodOverride = require('method-override')
 const port = process.env.PORT
 const session = require('express-session')
+const usePassport = require('./config/passport')
 
 //資料庫連線
 require('./config/mongoose')
@@ -22,6 +23,8 @@ app.use(session({
     resave: false,
     saveUninitialized: true
 }))
+
+usePassport(app)
 
 // CSS
 app.use(express.static('public'))
