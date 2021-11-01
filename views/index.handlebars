@@ -3,13 +3,12 @@
     <div class="row mt-5">
         <div class="col-7" >
             <form action="/record/search" method="post">
-                <select name="categoryId" id="categoryId" style="width: 300px;">
-                    <option value="">類別</option>
+                <select name="categoryId" id="categoryId" style="width: 300px;" onchange="this.form.submit()">
+                    <option value="" >類別</option>
                     {{#each category}}
                         <option value="{{this.id}}"> {{this.name}}</option>
                     {{/each}}
                 </select>
-                <button class='btn btn-outline-info btn-sm' type="submit">查詢</button>
             </form>
         </div>
     </div>
@@ -33,7 +32,7 @@
                 <td class="p-0" width="30%">
                     <div class="d-flex flex-column">
                         <p class="mb-0 mt-1">{{this.name}}</p>
-                        <p class="mb-0 " min="2020-01-01" max="2025-12-31" style="font-size: 5px">{{this.date}}</p>
+                        <p class="mb-0 " style="font-size: 5px" >{{this.date}}</p>
                     </div>
                 </td>
                 <td class="text-right pr-4" width="30%">{{this.amount}}</td>

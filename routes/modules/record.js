@@ -3,6 +3,7 @@ const router = express.Router()
 
 const Record = require('../../models/record')
 const Category = require("../../models/category");
+const moment = require("moment");
 
 
 
@@ -23,6 +24,7 @@ router.get('/:id/edit', (req, res) => {
     return Record.findOne({ _id, userId})
         .lean()
         .then( (record) => {
+            record.date = moment(record.date).format("YYYY-MM-DD")
             Category.find()
                 .lean()
                 .then( category => res.render('edit', { record, category }))
@@ -87,6 +89,7 @@ router.post('/search',(req, res) => {
 
             record.forEach( (records) => {
                 totalAmount += records.amount
+                records.date = moment(records.date).format("YYYY/MM/DD")
             })
             Category.find()
                 .lean()
