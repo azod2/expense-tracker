@@ -16,7 +16,7 @@ const flash = require('connect-flash')
 require('./config/mongoose')
 
 //使用layout既定格式
-app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+app.engine('handlebars', exphbs({defaultLayout: 'main', helpers: require('./public/javascripts/handlebars-helpers')}))
 app.set('view engine', 'handlebars')
 
 app.use(session({
