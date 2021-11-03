@@ -4,9 +4,8 @@
         <div class="col-7" >
             <form action="/record/search" method="post">
                 <select name="categoryId" id="categoryId" style="width: 300px;" onchange="this.form.submit()">
-                    <option value="" >類別</option>
-                    {{#each category}}
-                        <option value="{{this.id}}"> {{this.name}}</option>
+                    {{#each category }}
+                        <option value="{{this.id}}"  {{#ifEq this.id ../categoryid}} selected {{/ifEq}}>{{this.name}}</option>
                     {{/each}}
                 </select>
             </form>

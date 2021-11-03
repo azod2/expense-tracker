@@ -78,24 +78,32 @@ router.delete('/:id', (req, res) => {
 
 //類別分類顯示
 router.post('/search',(req, res) => {
-    // console.log('body: ',req.body.categoryId)
     const userId = req.user._id
-    if ( req.body.categoryId.length < 1 ) { return res.redirect('/')}
+    if ( req.body.categoryId.length < 1 ) { return res.redirect('/') }
+    if ( req.body.categoryId == 0) { return res.redirect('/') }
 
     Record.find({ categoryId: req.body.categoryId, userId })
         .lean()
         .then( record => {
             let totalAmount = 0
 
-            record.forEach( (records) => {
-                totalAmount += records.amount
-                records.date = moment(records.date).format("YYYY/MM/DD")
-            })
-            Category.find()
-                .lean()
-                .then( category => res.render('index', { record, category ,totalAmount}))
-                .catch((error) => console.log(error))
-        })
+                record.forEach( (records) => {
+                    totalAmount += records.amount
+                    records.date = moment(records.date).format("YYYY/MM/DD")
+                })
+
+            let categoryid = ''
+                Category.find().lean().sort({id:1}).then( category => {
+                    if (record.length > 0){
+                        categoryid = record[0].categoryId
+                        return  res.render('index', {record, category, totalAmount, categoryid})
+                    }else {
+                        categoryid = req.body.categoryId
+                        return  res.render('index', {record, category, totalAmount, categoryid})
+                    }
+                })
+
+        }).catch((error) => console.log(error))
 })
 
 module.exports = router

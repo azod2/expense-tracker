@@ -1,6 +1,11 @@
 {
   "category": [
     {
+      "id": "0",
+      "name": "所有類別",
+      "icon": "fas fa-home"
+    },
+    {
       "id": "1",
       "name": "家居物業",
       "icon": "fas fa-home"
