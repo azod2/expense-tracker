@@ -33,7 +33,7 @@
                     <td>
                         <select name="categoryId" id="categoryId" >
                             {{#each category}}
-                                <option value="{{this.id}}"  {{#ifEq this.id ../record.categoryId}} selected {{/ifEq}}>{{this.name}}</option>
+                                <option value="{{this.id}}"  {{#ifEq this.id ../record.categoryId}} selected {{/ifEq}}  {{#ifEq this.id 0}} hidden {{/ifEq}}>{{this.name}}</option>
                             {{/each}}
                         </select>
                     </td>

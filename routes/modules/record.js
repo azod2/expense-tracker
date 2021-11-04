@@ -42,8 +42,8 @@ router.put('/:id/edit', (req, res) => {
             Object.assign( record, req.body )
 
             Category.find({ id : req.body.categoryId })
-                .then( categoryid => {
-                    record.icon = categoryid[0].icon
+                .then( category => {
+                    record.icon = category[0].icon
                     return record.save()
                 } )
         })
@@ -92,14 +92,14 @@ router.post('/search',(req, res) => {
                     records.date = moment(records.date).format("YYYY/MM/DD")
                 })
 
-            let categoryid = ''
+            let nowCategory = ''
                 Category.find().lean().sort({id:1}).then( category => {
                     if (record.length > 0){
-                        categoryid = record[0].categoryId
-                        return  res.render('index', {record, category, totalAmount, categoryid})
+                        nowCategory = record[0].categoryId
+                        return  res.render('index', {record, category, totalAmount,  nowCategory})
                     }else {
-                        categoryid = req.body.categoryId
-                        return  res.render('index', {record, category, totalAmount, categoryid})
+                        nowCategory = req.body.categoryId
+                        return  res.render('index', {record, category, totalAmount,  nowCategory})
                     }
                 })
 
