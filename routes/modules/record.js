@@ -11,6 +11,7 @@ router.get('/new', ((req, res) => {
     // console.log('home new router')
     Category.find()
         .lean()
+        .sort({id:1})
         .then( category => res.render('new',{ category }))
         .catch((error) => console.log(error))
 

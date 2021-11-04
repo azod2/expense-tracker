@@ -19,6 +19,7 @@ router.get('/', (req,res) => {
             })
             Category.find()
                 .lean()
+                .sort({id:1})
                 .then( category => res.render('index', { record, category ,totalAmount}))
         })
         .catch((error) => console.log(error))
